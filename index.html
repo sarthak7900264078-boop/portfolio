@@ -24,21 +24,21 @@ overflow-x:hidden;
 cursor:none;
 }
 
-/* CURSOR */
+/* CUSTOM CURSOR */
 
 .glow{
 position:fixed;
-width:18px;
-height:18px;
+width:16px;
+height:16px;
 background:#ff9900;
 border-radius:50%;
 pointer-events:none;
 transform:translate(-50%,-50%);
 z-index:9999;
 box-shadow:
-0 0 10px #ff9900,
-0 0 25px #ff9900,
-0 0 40px #ff9900;
+0 0 12px #ff9900,
+0 0 35px #ff9900;
+transition: transform 0.1s ease;
 }
 
 /* NAVBAR */
@@ -47,19 +47,19 @@ nav{
 position:fixed;
 top:0;
 width:100%;
-padding:12px 5%;
-background:rgba(0,0,0,0.85);
+padding:14px 6%;
+background:rgba(0,0,0,.82);
 backdrop-filter:blur(12px);
-z-index:1000;
-border-bottom:1px solid rgba(255,153,0,.12);
+z-index:2000;
+border-bottom:1px solid rgba(255,153,0,.1);
 }
 
 .nav-container{
-max-width:1600px;
-margin:auto;
 display:flex;
 justify-content:space-between;
 align-items:center;
+max-width:1600px;
+margin:auto;
 }
 
 .logo{
@@ -69,17 +69,18 @@ gap:14px;
 }
 
 .logo img{
-width:65px;
-height:65px;
-border-radius:18px;
+width:90px;
+height:90px;
+border-radius:20px;
 object-fit:cover;
-border:2px solid #ff9900;
+border:3px solid #ff9900;
+background:white;
 }
 
 .logo-text h2{
-font-size:28px;
+font-size:32px;
+font-weight:800;
 color:#ff9900;
-line-height:1;
 }
 
 .logo-text span{
@@ -106,18 +107,24 @@ color:#ff9900;
 
 .nav-right{
 display:flex;
+gap:14px;
 align-items:center;
-gap:15px;
+}
+
+.call-btn,
+.login-btn{
+padding:13px 24px;
+border-radius:50px;
+font-weight:700;
+transition:.3s;
+text-decoration:none;
+cursor:pointer;
 }
 
 .call-btn{
-padding:12px 22px;
-border-radius:50px;
 background:#111;
 border:1px solid rgba(255,153,0,.2);
 color:white;
-text-decoration:none;
-transition:.3s;
 }
 
 .call-btn:hover{
@@ -126,14 +133,9 @@ color:black;
 }
 
 .login-btn{
-padding:12px 28px;
-border:none;
-border-radius:50px;
 background:#ff9900;
 color:black;
-font-weight:700;
-cursor:pointer;
-transition:.3s;
+border:none;
 }
 
 .login-btn:hover{
@@ -148,15 +150,14 @@ display:flex;
 justify-content:space-between;
 align-items:center;
 padding:0 10%;
-padding-top:120px;
-gap:60px;
-position:relative;
-overflow:hidden;
+padding-top:130px;
+gap:70px;
 background:
-linear-gradient(rgba(0,0,0,.78),rgba(0,0,0,.88)),
-url('https://images.unsplash.com/photo-1514933651103-005eec06c04b?q=80&w=2000&auto=format&fit=crop');
+linear-gradient(rgba(0,0,0,.85),rgba(0,0,0,.95)),
+url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=2000&q=80');
 background-size:cover;
 background-position:center;
+position:relative;
 }
 
 .hero-overlay{
@@ -164,20 +165,21 @@ position:absolute;
 width:700px;
 height:700px;
 background:#ff990020;
-filter:blur(120px);
-right:-150px;
-top:-100px;
 border-radius:50%;
+filter:blur(140px);
+right:-250px;
+top:-150px;
+z-index: 1;
 }
 
 .hero-left{
 max-width:650px;
 position:relative;
-z-index:2;
+z-index: 9999;
 }
 
 .hero-left h1{
-font-size:90px;
+font-size:92px;
 line-height:1;
 margin-bottom:25px;
 font-weight:800;
@@ -187,7 +189,7 @@ color:#ff9900;
 .hero-left p{
 font-size:19px;
 line-height:1.8;
-opacity:.85;
+opacity:.8;
 margin-bottom:35px;
 }
 
@@ -198,7 +200,7 @@ flex-wrap:wrap;
 }
 
 .btn{
-padding:16px 40px;
+padding:16px 38px;
 border:none;
 border-radius:50px;
 background:#ff9900;
@@ -208,12 +210,11 @@ font-weight:700;
 cursor:pointer;
 transition:.4s;
 text-decoration:none;
-display:inline-block;
 }
 
 .btn:hover{
-transform:scale(1.08);
-box-shadow:0 0 30px rgba(255,153,0,.4);
+transform:translateY(-4px);
+box-shadow:0 0 30px rgba(255,153,0,.3);
 }
 
 .btn2{
@@ -227,199 +228,356 @@ background:#ff9900;
 color:black;
 }
 
+/* SEARCH WRAPPER & DROPDOWN */
+
+.search-wrapper {
+margin-top: 35px;
+position: relative;
+max-width: 550px;
+z-index: 99999;
+}
+
 .search-box{
-margin-top:30px;
 display:flex;
 background:#111;
 padding:10px;
 border-radius:60px;
-max-width:520px;
-border:1px solid rgba(255,153,0,.2);
+border:1px solid rgba(255,153,0,.3);
+position: relative;
+z-index: 10;
+box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
 
 .search-box input{
 flex:1;
-background:transparent;
+background:none;
 border:none;
 outline:none;
-color:white;
-padding:10px;
+padding:12px;
 font-size:16px;
+color:white;
 }
 
 .search-box button{
-border:none;
 background:#ff9900;
-padding:14px 25px;
-border-radius:50px;
+border:none;
+padding:15px 28px;
+border-radius:40px;
 font-weight:700;
 cursor:pointer;
 }
 
-.hero-right{
-position:relative;
-z-index:2;
+.search-dropdown {
+position: absolute;
+top: 100%;
+left: 0;
+width: 100%;
+background: #111;
+border: 1px solid rgba(255,153,0,.3);
+border-radius: 20px;
+margin-top: 10px;
+max-height: 350px;
+overflow-y: auto;
+display: none;
+flex-direction: column;
+z-index: 99999;
+box-shadow: 0 25px 50px rgba(0,0,0,0.9);
 }
 
-.hero-right img{
-width:650px;
-height:520px;
-object-fit:cover;
-border-radius:35px;
-border:2px solid rgba(255,153,0,.15);
-box-shadow:
-0 0 40px rgba(255,153,0,.15),
-0 0 100px rgba(255,153,0,.08);
-animation:float 4s infinite alternate ease-in-out;
+.search-dropdown.active {
+display: flex;
+}
+
+.search-item {
+padding: 15px 20px;
+display: flex;
+align-items: center;
+gap: 15px;
+cursor: pointer;
+transition: 0.2s;
+border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.search-item:last-child {
+border-bottom: none;
+}
+
+.search-item:hover {
+background: rgba(255,153,0,0.15);
+color: #ff9900;
+}
+
+.search-item img {
+width: 50px;
+height: 50px;
+border-radius: 12px;
+object-fit: cover;
+border: 1px solid rgba(255,153,0,0.2);
+}
+
+.search-item-details {
+display: flex;
+flex-direction: column;
+}
+
+.search-item-title {
+font-weight: 600;
+font-size: 15px;
+}
+
+.search-item-price {
+font-size: 14px;
+color: #ff9900;
+font-weight: 700;
+}
+
+/* HERO SLIDER */
+
+.hero-right {
+position: relative;
+width: 650px;
+height: 530px;
+z-index: 2;
+animation: float 4s infinite alternate ease-in-out;
+}
+
+.hero-slider {
+position: relative;
+width: 100%;
+height: 100%;
+border-radius: 40px;
+border: 2px solid rgba(255,153,0,.15);
+box-shadow: 0 0 50px rgba(255,153,0,.12), 0 0 100px rgba(255,153,0,.08);
+overflow: hidden;
+background: #111;
+}
+
+.hero-slider img {
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+object-fit: cover;
+opacity: 0;
+transition: opacity 0.8s ease-in-out;
+}
+
+.hero-slider img.active {
+opacity: 1;
 }
 
 @keyframes float{
-from{
-transform:translateY(0px);
-}
-to{
-transform:translateY(20px);
-}
+from{ transform:translateY(0px); }
+to{ transform:translateY(18px); }
 }
 
 /* SPECIAL */
 
 .special{
-padding:120px 10%;
-text-align:center;
+padding:130px 10%;
+position: relative;
+z-index: 2;
 }
 
-.special h2{
-font-size:65px;
+.section-title{
+text-align:center;
+font-size:70px;
+font-weight:800;
+margin-bottom:70px;
 color:#ff9900;
-margin-bottom:60px;
 }
 
 .special-grid{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
 gap:35px;
 }
 
 .special-card{
 background:#111;
-border-radius:30px;
+border-radius:35px;
 overflow:hidden;
 border:1px solid rgba(255,153,0,.1);
-transition:.4s;
-transform:translateY(100px);
-opacity:0;
-}
-
-.special-card.show{
-transform:translateY(0);
-opacity:1;
-}
-
-.special-card:hover{
-transform:translateY(-10px) scale(1.03);
-box-shadow:0 0 30px rgba(255,153,0,.12);
+display: flex;
+flex-direction: column;
+height: 100%;
+transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+transform-style: preserve-3d;
 }
 
 .special-card img{
 width:100%;
-height:420px;
+height:320px;
 object-fit:cover;
 }
 
 .special-content{
-padding:25px;
+padding:28px;
+display: flex;
+flex-direction: column;
+flex-grow: 1;
 }
 
 .special-content h3{
-font-size:30px;
-margin-bottom:10px;
+font-size:32px;
+margin-bottom:12px;
 color:#ff9900;
+}
+
+.special-content p{
+opacity:.75;
+line-height:1.7;
+flex-grow: 1;
 }
 
 /* MENU */
 
 .menu{
-padding:120px 10%;
-background:#0d0d0d;
+padding:130px 8%;
+background:#0a0a0a;
+position: relative;
+z-index: 2;
 }
 
-.menu h2{
-text-align:center;
-font-size:65px;
-margin-bottom:60px;
-color:#ff9900;
+.menu-category{
+margin-bottom:90px;
+}
+
+.menu-category h3{
+font-size:42px;
+margin-bottom:35px;
+padding-left:18px;
+border-left:6px solid #ff9900;
 }
 
 .food-items{
 display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:30px;
+grid-template-columns:repeat(auto-fit, minmax(320px, 1fr));
+gap:35px;
 }
 
 .food-box{
-background:#111;
-padding:18px;
-border-radius:28px;
-border:1px solid rgba(255,153,0,.12);
-transition:.4s;
-text-align:center;
-}
-
-.food-box:hover{
-transform:translateY(-10px) scale(1.03);
-box-shadow:0 0 30px rgba(255,153,0,.12);
+background:linear-gradient(180deg,#111,#0b0b0b);
+border-radius:35px;
+overflow:hidden;
+border:1px solid rgba(255,153,0,.1);
+position:relative;
+display: flex;
+flex-direction: column;
+height: 100%;
+transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+transform-style: preserve-3d;
 }
 
 .food-box img{
 width:100%;
-height:220px;
+height:270px;
 object-fit:cover;
-border-radius:20px;
-margin-bottom:18px;
+background: #111;
 }
 
-.food-box h3{
-font-size:26px;
-margin-bottom:10px;
-color:#ff9900;
+.tag{
+position:absolute;
+top:18px;
+left:18px;
+background:#ff9900;
+color:black;
+padding:8px 15px;
+border-radius:50px;
+font-size:13px;
+font-weight:700;
+z-index: 2;
 }
 
-.food-box p{
-opacity:.75;
+.food-content{
+padding:28px;
+display: flex;
+flex-direction: column;
+flex-grow: 1;
+}
+
+.food-top{
+display:flex;
+justify-content:space-between;
+align-items:center;
 margin-bottom:15px;
 }
 
-.food-box span{
-font-size:28px;
+.food-top h4{
+font-size:26px;
 font-weight:700;
+}
+
+.food-price{
+font-size:28px;
+font-weight:800;
 color:#ff9900;
+}
+
+.food-content p{
+line-height:1.7;
+opacity:.75;
+margin-bottom:20px;
+flex-grow: 1;
+}
+
+.food-info{
+display:flex;
+justify-content:space-between;
+margin-bottom:25px;
+font-size:14px;
+opacity:.8;
+}
+
+.order-btn{
+width:100%;
+padding:16px;
+border:none;
+border-radius:18px;
+background:#ff9900;
+color:black;
+font-size:17px;
+font-weight:700;
+cursor:pointer;
+transition:.3s;
+margin-top: auto; 
+}
+
+.order-btn:hover{
+background:#ffb733;
+}
+
+.highlight {
+box-shadow: 0 0 40px #ff9900 !important;
+transform: translateY(-10px) scale(1.02);
+transition: 1s;
 }
 
 /* CONTACT */
 
 .contact{
-padding:120px 10%;
+padding:130px 10%;
 }
 
 .contact-box{
 background:#111;
-padding:60px;
-border-radius:35px;
-border:1px solid rgba(255,153,0,.12);
+padding:70px;
+border-radius:40px;
+border:1px solid rgba(255,153,0,.1);
 text-align:center;
 }
 
 .contact-box h2{
-font-size:55px;
+font-size:60px;
 margin-bottom:30px;
 color:#ff9900;
 }
 
 .contact-box p{
 font-size:18px;
+line-height:1.9;
 opacity:.8;
-margin-bottom:16px;
 }
 
 .contact-buttons{
@@ -427,22 +585,22 @@ display:flex;
 justify-content:center;
 gap:20px;
 flex-wrap:wrap;
-margin-top:35px;
+margin-top:40px;
 }
 
 /* FOOTER */
 
 footer{
-padding:50px;
+padding:60px;
+background:#0b0b0b;
 text-align:center;
-background:#0d0d0d;
 border-top:1px solid rgba(255,153,0,.1);
 }
 
 footer h3{
-font-size:32px;
+font-size:34px;
 color:#ff9900;
-margin-bottom:10px;
+margin-bottom:15px;
 }
 
 footer p{
@@ -450,60 +608,97 @@ opacity:.7;
 margin-top:10px;
 }
 
-/* MOBILE */
+/* MODALS */
 
-@media(max-width:1000px){
-
-.nav-links{
-display:none;
+.modal-overlay {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background: rgba(0, 0, 0, 0.85);
+backdrop-filter: blur(8px);
+z-index: 99999;
+display: flex;
+justify-content: center;
+align-items: center;
+opacity: 0;
+pointer-events: none;
+transition: 0.3s ease-in-out;
 }
 
-.call-btn{
-display:none;
+.modal-overlay.active {
+opacity: 1;
+pointer-events: auto;
 }
 
-.hero{
-flex-direction:column;
-text-align:center;
-padding-top:170px;
+.modal-box {
+background: #111;
+padding: 40px;
+border-radius: 30px;
+border: 1px solid rgba(255, 153, 0, 0.3);
+width: 90%;
+max-width: 450px;
+position: relative;
+transform: translateY(-30px);
+transition: 0.3s ease-in-out;
+box-shadow: 0 20px 50px rgba(0,0,0,0.5);
 }
 
-.hero-left h1{
-font-size:58px;
+.modal-overlay.active .modal-box {
+transform: translateY(0);
 }
 
-.hero-buttons{
-justify-content:center;
+.close-btn {
+position: absolute;
+top: 20px;
+right: 25px;
+background: transparent;
+border: none;
+color: white;
+font-size: 28px;
+cursor: pointer;
+transition: 0.3s;
 }
 
-.hero-right img{
-width:100%;
-height:350px;
+.close-btn:hover {
+color: #ff9900;
+transform: scale(1.1);
 }
 
-.logo img{
-width:55px;
-height:55px;
+.modal-box h2 {
+color: #ff9900;
+margin-bottom: 25px;
+font-size: 32px;
+text-align: center;
 }
 
-.logo-text h2{
-font-size:22px;
+.input-group { margin-bottom: 15px; }
+.input-group label { display: block; margin-bottom: 8px; font-size: 14px; opacity: 0.8; }
+.modal-box input, .modal-box textarea, .modal-box select {
+width: 100%; padding: 14px; background: #1a1a1a; border: 1px solid #333; color: white; border-radius: 12px; font-family: 'Poppins', sans-serif; font-size: 15px; transition: 0.3s; outline: none;
 }
+.modal-box input:focus, .modal-box textarea:focus, .modal-box select:focus { border-color: #ff9900; background: #222; }
 
-.special h2,
-.menu h2,
-.contact-box h2{
-font-size:42px;
-}
+.submit-btn { width: 100%; padding: 16px; border: none; border-radius: 12px; background: #ff9900; color: black; font-size: 18px; font-weight: 700; cursor: pointer; transition: 0.3s; margin-top: 10px; }
+.submit-btn:hover { background: #ffb733; transform: translateY(-2px); box-shadow: 0 10px 20px rgba(255,153,0,.2); }
 
-.food-items{
-grid-template-columns:1fr;
-}
+/* MOBILE RESPONSIVENESS */
 
-.contact-box{
-padding:35px;
-}
-
+@media(max-width:1100px){
+body { cursor: auto; }
+.glow { display: none; }
+.nav-links{ display:none; }
+.hero{ flex-direction:column; text-align:center; padding-top:170px; }
+.hero-left h1{ font-size:60px; }
+.hero-right{ width:100%; height:360px; margin-top: 30px;}
+.food-items{ grid-template-columns:1fr; }
+.section-title{ font-size:48px; }
+.menu-category h3{ font-size:34px; }
+.contact-box{ padding:40px; }
+.logo img{ width:70px; height:70px; }
+.food-box:active, .special-card:active { transform: translateY(-5px); }
+.search-wrapper { max-width: 100%; }
 }
 
 </style>
@@ -514,250 +709,513 @@ padding:35px;
 <div class="glow"></div>
 
 <nav>
-
 <div class="nav-container">
-
 <div class="logo">
-
-<img src="images.jpg">
-
+<img src="https://scontent.fagr1-1.fna.fbcdn.net/v/t39.30808-1/302790056_114373054724371_9182045205486800977_n.jpg?stp=dst-jpg_s200x200_tt6&_nc_cat=103&ccb=1-7&_nc_sid=f907e8&_nc_ohc=J-X8QCmTQ4IQ7kNvwFEXJ9p&_nc_oc=AdpkIFqrwfrce68n4Gu5KfL_Qg-Gbazbf2YhLq7Umhau5XVOvsXpaNhpJKu67LMXvAs&_nc_zt=24&_nc_ht=scontent.fagr1-1.fna&_nc_gid=LbtjpbgIWMEvFJt3wbRL1Q&_nc_ss=7a289&oh=00_Af6Nib-k3yxNoc-s92doe36VViBqVhjFrDafcS6po8SGQw&oe=6A131D0E" alt="Logo">
 <div class="logo-text">
 <h2>Paapi Pet</h2>
 <span>Pure Veg Restaurant</span>
 </div>
-
 </div>
-
 <ul class="nav-links">
 <li><a href="#">Home</a></li>
 <li><a href="#special">Special</a></li>
 <li><a href="#menu">Menu</a></li>
 <li><a href="#contact">Contact</a></li>
 </ul>
-
 <div class="nav-right">
-
-<a href="tel:7302124110" class="call-btn">
-📞 Call
-</a>
-
-<button class="login-btn">
-Login
-</button>
-
+<a href="tel:7302124110" class="call-btn">📞 Call</a>
+<button class="login-btn">Login</button>
 </div>
-
 </div>
-
 </nav>
 
 <section class="hero">
-
 <div class="hero-overlay"></div>
-
 <div class="hero-left">
-
-<h1>
-Fresh Veg<br>
-Fast Delivery.
-</h1>
-
-<p>
-Paapi पेट् Restaurant serves premium pure vegetarian fast food with modern taste and fast service in Sirsaganj.
-</p>
-
+<h1>Fresh Veg<br>Fast Delivery</h1>
+<p>Premium pure vegetarian restaurant serving pizza, dosa, pasta, shakes, pav bhaji and more with modern taste and fast delivery.</p>
 <div class="hero-buttons">
 <a href="#menu" class="btn">Order Now</a>
 <a href="#contact" class="btn btn2">Visit Store</a>
 </div>
 
+<div class="search-wrapper">
 <div class="search-box">
-<input type="text" placeholder="Search Pizza, Pasta, Patties...">
-<button>Search</button>
+<input type="text" id="searchInput" placeholder="Search Pizza, Dosa, Pasta, Samosa..." autocomplete="off">
+<button id="searchButton" onclick="document.getElementById('menu').scrollIntoView({ behavior: 'smooth' });">Search</button>
 </div>
-
+<div class="search-dropdown" id="searchDropdown"></div>
+</div>
 </div>
 
 <div class="hero-right">
-
-<img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?q=80&w=1600&auto=format&fit=crop">
-
+<div class="hero-slider">
+<img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=800" class="active" alt="Veg Pizza">
+<img src="https://upload.wikimedia.org/wikipedia/commons/4/4a/Bambaiya_Pav_bhaji.jpg" alt="Pav Bhaji">
+<img src="https://upload.wikimedia.org/wikipedia/commons/0/0b/Dosa_and_ghee.jpg" alt="Masala Dosa">
+<img src="https://upload.wikimedia.org/wikipedia/commons/c/cb/Samosachutney.jpg" alt="Samosa">
 </div>
-
+</div>
 </section>
 
 <section class="special" id="special">
-
-<h2>Today's Special</h2>
-
+<h2 class="section-title">Today's Special</h2>
 <div class="special-grid">
 
-<div class="special-card">
-<img src="https://images.unsplash.com/photo-1596797038530-2c107229654b?q=80&w=1600&auto=format&fit=crop">
-
+<div class="special-card tilt-element">
+<img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?w=800" alt="Farmhouse Pizza">
 <div class="special-content">
-<h3>Special Pasta</h3>
-<p>Pure veg creamy white sauce pasta.</p>
+<h3>Farmhouse Pizza</h3>
+<p>Loaded with fresh veggies, premium mozzarella cheese and authentic Italian tomato sauce straight from the oven.</p>
+</div>
 </div>
 
-</div>
-
-<div class="special-card">
-
-<img src="https://images.unsplash.com/photo-1619895092538-128341789043?q=80&w=1600&auto=format&fit=crop">
-
+<div class="special-card tilt-element">
+<img src="https://upload.wikimedia.org/wikipedia/commons/0/0b/Dosa_and_ghee.jpg" alt="Masala Dosa">
 <div class="special-content">
-<h3>Aalu Patties</h3>
-<p>Hot crispy patties with spicy filling.</p>
+<h3>Masala Dosa</h3>
+<p>Crispy golden traditional dosa served hot with perfectly spiced sambhar and freshly ground coconut chutney.</p>
+</div>
 </div>
 
 </div>
-
-</div>
-
 </section>
 
 <section class="menu" id="menu">
+<h2 class="section-title">Restaurant Menu</h2>
 
-<h2>Restaurant Menu</h2>
-
+<div class="menu-category">
+<h3>🍕 Pizza Special</h3>
 <div class="food-items">
 
-<div class="food-box">
-<img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=1200&auto=format&fit=crop">
-<h3>Veg Burger</h3>
-<p>Cheesy crispy veg burger</p>
-<span>₹49</span>
+<div class="food-box tilt-element" id="item-margarita-pizza">
+<div class="tag">Best Seller</div>
+<img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=800" alt="Margarita Pizza">
+<div class="food-content">
+<div class="food-top">
+<h4>Margarita Pizza</h4>
+<div class="food-price">₹149</div>
+</div>
+<p>Classic pure mozzarella cheese pizza wrapped in authentic, bold Italian flavors.</p>
+<div class="food-info">
+<div>⭐ 4.8 Rating</div>
+<div>⏱ 20 Min</div>
+</div>
+<button class="order-btn">Order Now</button>
+</div>
 </div>
 
-<div class="food-box">
-<img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=1200&auto=format&fit=crop">
-<h3>Veg Pizza</h3>
-<p>Loaded cheese pizza</p>
-<span>₹99</span>
+<div class="food-box tilt-element" id="item-paneer-pizza">
+<img src="https://images.unsplash.com/photo-1590947132387-155cc02f3212?w=800" alt="Paneer Pizza">
+<div class="food-content">
+<div class="food-top">
+<h4>Paneer Pizza</h4>
+<div class="food-price">₹179</div>
+</div>
+<p>Loaded with massive paneer cubes, thick cheese burst toppings, and fresh crunchy veggies.</p>
+<div class="food-info">
+<div>⭐ 4.7 Rating</div>
+<div>⏱ 25 Min</div>
+</div>
+<button class="order-btn">Order Now</button>
+</div>
 </div>
 
-<div class="food-box">
-<img src="https://images.unsplash.com/photo-1596797038530-2c107229654b?q=80&w=1200&auto=format&fit=crop">
-<h3>White Sauce Pasta</h3>
-<p>Creamy pure veg pasta</p>
-<span>₹40</span>
+<div class="food-box tilt-element" id="item-farmhouse-pizza">
+<img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?w=800" alt="Farmhouse Pizza">
+<div class="food-content">
+<div class="food-top">
+<h4>Farmhouse Pizza</h4>
+<div class="food-price">₹219</div>
+</div>
+<p>A premium farmhouse delight featuring fresh cut onions, capsicum, and golden sweet corn.</p>
+<div class="food-info">
+<div>⭐ 4.9 Rating</div>
+<div>⏱ 25 Min</div>
+</div>
+<button class="order-btn">Order Now</button>
+</div>
 </div>
 
-<div class="food-box">
-<img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?q=80&w=1200&auto=format&fit=crop">
-<h3>French Fries</h3>
-<p>Crispy salted fries</p>
-<span>₹59</span>
+</div>
 </div>
 
-<div class="food-box">
-<img src="https://images.unsplash.com/photo-1619895092538-128341789043?q=80&w=1200&auto=format&fit=crop">
-<h3>Aalu Patties</h3>
-<p>Hot crispy patties</p>
-<span>₹30</span>
+<div class="menu-category">
+<h3>🥞 South Indian</h3>
+<div class="food-items">
+
+<div class="food-box tilt-element" id="item-masala-dosa">
+<img src="https://upload.wikimedia.org/wikipedia/commons/0/0b/Dosa_and_ghee.jpg" alt="Masala Dosa">
+<div class="food-content">
+<div class="food-top">
+<h4>Masala Dosa</h4>
+<div class="food-price">₹99</div>
+</div>
+<p>Crispy South Indian dosa generously stuffed with a spicy, rich potato masala filling.</p>
+<div class="food-info">
+<div>⭐ 4.7 Rating</div>
+<div>⏱ 15 Min</div>
+</div>
+<button class="order-btn">Order Now</button>
+</div>
 </div>
 
-<div class="food-box">
-<img src="https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?q=80&w=1200&auto=format&fit=crop">
-<h3>Veg Sandwich</h3>
-<p>Loaded grilled sandwich</p>
-<span>₹45</span>
+<div class="food-box tilt-element" id="item-paneer-dosa">
+<img src="https://upload.wikimedia.org/wikipedia/commons/5/58/Dosa_with_chutney_and_sambar.jpg" alt="Paneer Dosa">
+<div class="food-content">
+<div class="food-top">
+<h4>Paneer Dosa</h4>
+<div class="food-price">₹149</div>
+</div>
+<p>Rich, loaded paneer dosa boasting a crispy exterior, served alongside fresh chutneys.</p>
+<div class="food-info">
+<div>⭐ 4.8 Rating</div>
+<div>⏱ 18 Min</div>
+</div>
+<button class="order-btn">Order Now</button>
+</div>
 </div>
 
+<div class="food-box tilt-element" id="item-pizza-dosa">
+<img src="https://upload.wikimedia.org/wikipedia/commons/9/9f/Dosa_at_a_street_vendor.jpg" alt="Pizza Dosa">
+<div class="food-content">
+<div class="food-top">
+<h4>Pizza Dosa</h4>
+<div class="food-price">₹159</div>
+</div>
+<p>A unique fusion dosa baked with cheese pizza-style toppings, sauces, and diced veggies.</p>
+<div class="food-info">
+<div>⭐ 4.9 Rating</div>
+<div>⏱ 20 Min</div>
+</div>
+<button class="order-btn">Order Now</button>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="menu-category">
+<h3>🥪 Street Food & Snacks</h3>
+<div class="food-items">
+
+<div class="food-box tilt-element" id="item-crispy-samosa">
+<div class="tag">Popular</div>
+<img src="https://upload.wikimedia.org/wikipedia/commons/c/cb/Samosachutney.jpg" alt="Samosa">
+<div class="food-content">
+<div class="food-top">
+<h4>Crispy Samosa</h4>
+<div class="food-price">₹20</div>
+</div>
+<p>Golden, crispy fried pastry shells filled to the brim with a savory spiced potato and peas mixture.</p>
+<div class="food-info">
+<div>⭐ 4.9 Rating</div>
+<div>⏱ 10 Min</div>
+</div>
+<button class="order-btn">Order Now</button>
+</div>
+</div>
+
+<div class="food-box tilt-element" id="item-bombay-pav-bhaji">
+<img src="https://upload.wikimedia.org/wikipedia/commons/4/4a/Bambaiya_Pav_bhaji.jpg" alt="Pav Bhaji">
+<div class="food-content">
+<div class="food-top">
+<h4>Bombay Pav Bhaji</h4>
+<div class="food-price">₹99</div>
+</div>
+<p>Thick mashed vegetable curry slow-cooked in butter, served with soft, toasted pav bread buns.</p>
+<div class="food-info">
+<div>⭐ 4.8 Rating</div>
+<div>⏱ 12 Min</div>
+</div>
+<button class="order-btn">Order Now</button>
+</div>
+</div>
+
+<div class="food-box tilt-element" id="item-white-sauce-pasta">
+<img src="https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=800" alt="White Sauce Pasta">
+<div class="food-content">
+<div class="food-top">
+<h4>White Sauce Pasta</h4>
+<div class="food-price">₹129</div>
+</div>
+<p>Creamy, rich penne pasta tossed in a premium cheese blend sauce infused with fresh herbs.</p>
+<div class="food-info">
+<div>⭐ 4.7 Rating</div>
+<div>⏱ 15 Min</div>
+</div>
+<button class="order-btn">Order Now</button>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="menu-category">
+<h3>🥤 Drinks & Shakes</h3>
+<div class="food-items">
+
+<div class="food-box tilt-element" id="item-chocolate-shake">
+<img src="https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=800" alt="Chocolate Shake">
+<div class="food-content">
+<div class="food-top">
+<h4>Chocolate Shake</h4>
+<div class="food-price">₹89</div>
+</div>
+<p>Cold creamy thick chocolate shake generously topped with premium chocolate syrup.</p>
+<div class="food-info">
+<div>⭐ 4.9 Rating</div>
+<div>⏱ 5 Min</div>
+</div>
+<button class="order-btn">Order Now</button>
+</div>
+</div>
+
+<div class="food-box tilt-element" id="item-kesar-badam-shake">
+<img src="https://images.unsplash.com/photo-1541658016709-82535e94bc69?w=800" alt="Kesar Badam Shake">
+<div class="food-content">
+<div class="food-top">
+<h4>Kesar Badam Shake</h4>
+<div class="food-price">₹89</div>
+</div>
+<p>A royal, refreshing kesar badam flavored creamy milkshake loaded with dry fruits.</p>
+<div class="food-info">
+<div>⭐ 4.8 Rating</div>
+<div>⏱ 5 Min</div>
+</div>
+<button class="order-btn">Order Now</button>
+</div>
+</div>
+
+<div class="food-box tilt-element" id="item-cold-coffee">
+<img src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=800" alt="Cold Coffee">
+<div class="food-content">
+<div class="food-top">
+<h4>Cold Coffee</h4>
+<div class="food-price">₹89</div>
+</div>
+<p>Freshly brewed cold coffee blended beautifully with sweet cream and a hint of chocolate.</p>
+<div class="food-info">
+<div>⭐ 4.7 Rating</div>
+<div>⏱ 5 Min</div>
+</div>
+<button class="order-btn">Order Now</button>
+</div>
+</div>
+
+</div>
 </div>
 
 </section>
 
 <section class="contact" id="contact">
-
 <div class="contact-box">
-
 <h2>Contact Us</h2>
-
-<p><strong>Restaurant:</strong> Paapi पेट् Restaurant</p>
-
-<p><strong>Address:</strong> In front of Dr. Kedarnath hospital, Sirsaganj, Uttar Pradesh 283151</p>
-
-<p><strong>Phone:</strong> +91 73021 24110</p>
-
-<p><strong>Hours:</strong> Open • Closes 11 PM</p>
-
-<p><strong>Rating:</strong> ⭐ 4.6 / 5 (131 Google Reviews)</p>
-
+<p>
+<strong>Paapi पेट् Restaurant</strong><br>
+In front of Dr. Kedarnath Hospital,<br>
+Sirsaganj, Uttar Pradesh 283151
+</p>
+<p>
+📞 +91 73021 24110<br>
+🕒 Open Till 11 PM<br>
+⭐ 4.6 Google Rating
+</p>
 <div class="contact-buttons">
-
-<a href="tel:7302124110" class="btn">
-Call Now
-</a>
-
-<a href="https://wa.me/917302124110" target="_blank" class="btn">
-WhatsApp
-</a>
-
-<a href="https://maps.google.com/?q=Paapi+Pet+Restaurant+Sirsaganj" target="_blank" class="btn">
-Directions
-</a>
-
+<a href="tel:7302124110" class="btn">Call Now</a>
+<a href="https://wa.me/917302124110" target="_blank" class="btn">WhatsApp</a>
+<a href="https://maps.google.com/?q=Paapi+Pet+Restaurant+Sirsaganj" target="_blank" class="btn">Directions</a>
 </div>
-
 </div>
-
 </section>
 
 <footer>
-
 <h3>Paapi Pet Restaurant</h3>
-
-<p>
-"Paapi पेट् का सवाल है खाना तो पड़ेगा hi 😋🍴"
-</p>
-
-<p>
-Presented By Aniruddha Sharma
-</p>
-
-<p>
-Pure Vegetarian • Fast Food • Sirsaganj
-</p>
-
-<p>
-© 2026 Paapi Pet. All Rights Reserved.
-</p>
-
+<p>"Paapi पेट् का सवाल है खाना to पड़ेगा 😋"</p>
+<p>Presented By Aniruddha Sharma</p>
+<p>Delivery Available On Zomato & Swiggy</p>
+<p>© 2026 Paapi Pet Restaurant</p>
 </footer>
+
+<!-- LOGIN MODAL -->
+<div class="modal-overlay" id="loginModal">
+<div class="modal-box">
+<button class="close-btn" onclick="closeModal('loginModal')">&times;</button>
+<h2>Welcome Back</h2>
+<form onsubmit="handleLogin(event)">
+<div class="input-group">
+<label>Phone Number / Email</label>
+<input type="text" placeholder="Enter your detail..." required>
+</div>
+<div class="input-group">
+<label>Password</label>
+<input type="password" placeholder="Enter password..." required>
+</div>
+<button type="submit" class="submit-btn">Login Securely</button>
+</form>
+</div>
+</div>
+
+<!-- ORDER MODAL -->
+<div class="modal-overlay" id="orderModal">
+<div class="modal-box">
+<button class="close-btn" onclick="closeModal('orderModal')">&times;</button>
+<h2>Complete Order</h2>
+<form onsubmit="handleOrder(event)">
+<div class="input-group">
+<label>Selected Item</label>
+<input type="text" id="selectedItemInput" readonly style="color:#ff9900; font-weight:bold;">
+</div>
+<div class="input-group">
+<label>Your Name</label>
+<input type="text" placeholder="John Doe" required>
+</div>
+<div class="input-group">
+<label>Delivery Address</label>
+<textarea rows="2" placeholder="Enter full address..." required></textarea>
+</div>
+<div class="input-group">
+<label>Quantity</label>
+<input type="number" min="1" value="1" required>
+</div>
+<button type="submit" class="submit-btn">Confirm Order</button>
+</form>
+</div>
+</div>
 
 <script>
 
+/* CUSTOM CURSOR SCRIPT */
 const glow = document.querySelector(".glow");
-
 document.addEventListener("mousemove",(e)=>{
-
-glow.animate({
-left:e.clientX + "px",
-top:e.clientY + "px"
-},{
-duration:80,
-fill:"forwards"
+  if(window.innerWidth > 1100) {
+    glow.animate({ left: e.clientX + "px", top: e.clientY + "px" }, { duration: 80, fill: "forwards" });
+  }
 });
 
+/* HERO SLIDER LOGIC */
+const slides = document.querySelectorAll('.hero-slider img');
+let currentSlide = 0;
+
+setInterval(() => {
+  slides[currentSlide].classList.remove('active');
+  currentSlide = (currentSlide + 1) % slides.length;
+  slides[currentSlide].classList.add('active');
+}, 1500); 
+
+/* AUTOCOMPLETE DROP-DOWN SEARCH LOGIC */
+const searchInput = document.getElementById("searchInput");
+const searchDropdown = document.getElementById("searchDropdown");
+
+let menuItems = [];
+document.querySelectorAll(".food-box").forEach(box => {
+  let title = box.querySelector("h4").innerText;
+  let price = box.querySelector(".food-price").innerText;
+  let img = box.querySelector("img").src;
+  let id = box.id;
+  menuItems.push({ title, price, img, id });
 });
 
-const cards = document.querySelectorAll(".special-card");
+searchInput.addEventListener("input", function() {
+  let val = this.value.toLowerCase().trim();
+  searchDropdown.innerHTML = ""; 
 
-window.addEventListener("scroll",()=>{
+  if(val === "") {
+    searchDropdown.classList.remove("active");
+    return;
+  }
 
-cards.forEach(card=>{
+  let matches = menuItems.filter(item => item.title.toLowerCase().includes(val));
 
-const top = card.getBoundingClientRect().top;
+  if(matches.length > 0) {
+    searchDropdown.classList.add("active");
+    matches.forEach(item => {
+      let div = document.createElement("div");
+      div.className = "search-item";
+      div.innerHTML = `
+        <img src="${item.img}" alt="${item.title}">
+        <div class="search-item-details">
+          <span class="search-item-title">${item.title}</span>
+          <span class="search-item-price">${item.price}</span>
+        </div>
+      `;
+      div.onclick = function() {
+        searchDropdown.classList.remove("active");
+        searchInput.value = item.title;
+        let targetElement = document.getElementById(item.id);
+        
+        targetElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        
+        targetElement.classList.add("highlight");
+        setTimeout(() => targetElement.classList.remove("highlight"), 2000);
+      };
+      searchDropdown.appendChild(div);
+    });
+  } else {
+    searchDropdown.classList.remove("active");
+  }
+});
 
-if(top < window.innerHeight - 100){
-card.classList.add("show");
+document.addEventListener("click", function(e) {
+  if(!e.target.closest(".search-wrapper")) {
+    searchDropdown.classList.remove("active");
+  }
+});
+
+/* 3D TILT EFFECT */
+const tiltElements = document.querySelectorAll('.tilt-element');
+tiltElements.forEach(element => {
+  element.addEventListener('mousemove', (e) => {
+    if(window.innerWidth <= 1100) return;
+    const rect = element.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    const rotateX = ((y - centerY) / centerY) * -8;
+    const rotateY = ((x - centerX) / centerX) * 8;
+    element.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+    element.style.boxShadow = `0 20px 40px rgba(255,153,0,.15), 0 0 30px rgba(255,153,0,.1)`;
+  });
+  element.addEventListener('mouseleave', () => {
+    if(window.innerWidth <= 1100) return;
+    element.style.transform = `perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)`;
+    element.style.boxShadow = `none`;
+  });
+});
+
+/* MODAL LOGIC */
+function openModal(id) { document.getElementById(id).classList.add('active'); }
+function closeModal(id) { document.getElementById(id).classList.remove('active'); }
+
+/* LOGIN HANDLING */
+document.querySelector('.login-btn').addEventListener('click', () => { openModal('loginModal'); });
+function handleLogin(e) {
+  e.preventDefault();
+  alert("✅ Logged in successfully! Welcome back.");
+  closeModal('loginModal');
+  document.querySelector('.login-btn').innerText = "My Account";
 }
 
+/* ORDER HANDLING */
+const orderBtns = document.querySelectorAll('.order-btn');
+const selectedItemInput = document.getElementById('selectedItemInput');
+orderBtns.forEach(btn => {
+  btn.addEventListener('click', (e) => {
+    let parentCard = e.target.closest('.food-content');
+    let foodName = parentCard.querySelector('h4').innerText;
+    let foodPrice = parentCard.querySelector('.food-price').innerText;
+    selectedItemInput.value = `${foodName} - ${foodPrice}`;
+    openModal('orderModal');
+  });
 });
 
-});
+function handleOrder(e) {
+  e.preventDefault();
+  alert("🎉 Order Placed Successfully! The restaurant has received your order and it will be delivered soon.");
+  closeModal('orderModal');
+}
 
 </script>
 
