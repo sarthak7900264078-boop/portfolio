@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Paapi Pet Restaurant</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+scroll-behavior:smooth;
+}
+
+body{
+font-family:'Poppins',sans-serif;
+background:#050505;
+color:white;
+overflow-x:hidden;
+cursor:none;
+}
+
+/* CURSOR */
+
+.glow{
+position:fixed;
+width:18px;
+height:18px;
+background:#ff9900;
+border-radius:50%;
+pointer-events:none;
+transform:translate(-50%,-50%);
+z-index:9999;
+box-shadow:
+0 0 10px #ff9900,
+0 0 25px #ff9900,
+0 0 40px #ff9900;
+}
+
+/* NAVBAR */
+
+nav{
+position:fixed;
+top:0;
+width:100%;
+padding:12px 5%;
+background:rgba(0,0,0,0.85);
+backdrop-filter:blur(12px);
+z-index:1000;
+border-bottom:1px solid rgba(255,153,0,.12);
+}
+
+.nav-container{
+max-width:1600px;
+margin:auto;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+.logo{
+display:flex;
+align-items:center;
+gap:14px;
+}
+
+.logo img{
+width:65px;
+height:65px;
+border-radius:18px;
+object-fit:cover;
+border:2px solid #ff9900;
+}
+
+.logo-text h2{
+font-size:28px;
+color:#ff9900;
+line-height:1;
+}
+
+.logo-text span{
+font-size:13px;
+opacity:.7;
+}
+
+.nav-links{
+display:flex;
+gap:35px;
+list-style:none;
+}
+
+.nav-links a{
+text-decoration:none;
+color:white;
+font-weight:500;
+transition:.3s;
+}
+
+.nav-links a:hover{
+color:#ff9900;
+}
+
+.nav-right{
+display:flex;
+align-items:center;
+gap:15px;
+}
+
+.call-btn{
+padding:12px 22px;
+border-radius:50px;
+background:#111;
+border:1px solid rgba(255,153,0,.2);
+color:white;
+text-decoration:none;
+transition:.3s;
+}
+
+.call-btn:hover{
+background:#ff9900;
+color:black;
+}
+
+.login-btn{
+padding:12px 28px;
+border:none;
+border-radius:50px;
+background:#ff9900;
+color:black;
+font-weight:700;
+cursor:pointer;
+transition:.3s;
+}
+
+.login-btn:hover{
+transform:scale(1.05);
+}
+
+/* HERO */
+
+.hero{
+min-height:100vh;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:0 10%;
+padding-top:120px;
+gap:60px;
+position:relative;
+overflow:hidden;
+background:
+linear-gradient(rgba(0,0,0,.78),rgba(0,0,0,.88)),
+url('https://images.unsplash.com/photo-1514933651103-005eec06c04b?q=80&w=2000&auto=format&fit=crop');
+background-size:cover;
+background-position:center;
+}
+
+.hero-overlay{
+position:absolute;
+width:700px;
+height:700px;
+background:#ff990020;
+filter:blur(120px);
+right:-150px;
+top:-100px;
+border-radius:50%;
+}
+
+.hero-left{
+max-width:650px;
+position:relative;
+z-index:2;
+}
+
+.hero-left h1{
+font-size:90px;
+line-height:1;
+margin-bottom:25px;
+font-weight:800;
+color:#ff9900;
+}
+
+.hero-left p{
+font-size:19px;
+line-height:1.8;
+opacity:.85;
+margin-bottom:35px;
+}
+
+.hero-buttons{
+display:flex;
+gap:20px;
+flex-wrap:wrap;
+}
+
+.btn{
+padding:16px 40px;
+border:none;
+border-radius:50px;
+background:#ff9900;
+color:black;
+font-size:17px;
+font-weight:700;
+cursor:pointer;
+transition:.4s;
+text-decoration:none;
+display:inline-block;
+}
+
+.btn:hover{
+transform:scale(1.08);
+box-shadow:0 0 30px rgba(255,153,0,.4);
+}
+
+.btn2{
+background:transparent;
+border:2px solid #ff9900;
+color:#ff9900;
+}
+
+.btn2:hover{
+background:#ff9900;
+color:black;
+}
+
+.search-box{
+margin-top:30px;
+display:flex;
+background:#111;
+padding:10px;
+border-radius:60px;
+max-width:520px;
+border:1px solid rgba(255,153,0,.2);
+}
+
+.search-box input{
+flex:1;
+background:transparent;
+border:none;
+outline:none;
+color:white;
+padding:10px;
+font-size:16px;
+}
+
+.search-box button{
+border:none;
+background:#ff9900;
+padding:14px 25px;
+border-radius:50px;
+font-weight:700;
+cursor:pointer;
+}
+
+.hero-right{
+position:relative;
+z-index:2;
+}
+
+.hero-right img{
+width:650px;
+height:520px;
+object-fit:cover;
+border-radius:35px;
+border:2px solid rgba(255,153,0,.15);
+box-shadow:
+0 0 40px rgba(255,153,0,.15),
+0 0 100px rgba(255,153,0,.08);
+animation:float 4s infinite alternate ease-in-out;
+}
+
+@keyframes float{
+from{
+transform:translateY(0px);
+}
+to{
+transform:translateY(20px);
+}
+}
+
+/* SPECIAL */
+
+.special{
+padding:120px 10%;
+text-align:center;
+}
+
+.special h2{
+font-size:65px;
+color:#ff9900;
+margin-bottom:60px;
+}
+
+.special-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+gap:35px;
+}
+
+.special-card{
+background:#111;
+border-radius:30px;
+overflow:hidden;
+border:1px solid rgba(255,153,0,.1);
+transition:.4s;
+transform:translateY(100px);
+opacity:0;
+}
+
+.special-card.show{
+transform:translateY(0);
+opacity:1;
+}
+
+.special-card:hover{
+transform:translateY(-10px) scale(1.03);
+box-shadow:0 0 30px rgba(255,153,0,.12);
+}
+
+.special-card img{
+width:100%;
+height:420px;
+object-fit:cover;
+}
+
+.special-content{
+padding:25px;
+}
+
+.special-content h3{
+font-size:30px;
+margin-bottom:10px;
+color:#ff9900;
+}
+
+/* MENU */
+
+.menu{
+padding:120px 10%;
+background:#0d0d0d;
+}
+
+.menu h2{
+text-align:center;
+font-size:65px;
+margin-bottom:60px;
+color:#ff9900;
+}
+
+.food-items{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:30px;
+}
+
+.food-box{
+background:#111;
+padding:18px;
+border-radius:28px;
+border:1px solid rgba(255,153,0,.12);
+transition:.4s;
+text-align:center;
+}
+
+.food-box:hover{
+transform:translateY(-10px) scale(1.03);
+box-shadow:0 0 30px rgba(255,153,0,.12);
+}
+
+.food-box img{
+width:100%;
+height:220px;
+object-fit:cover;
+border-radius:20px;
+margin-bottom:18px;
+}
+
+.food-box h3{
+font-size:26px;
+margin-bottom:10px;
+color:#ff9900;
+}
+
+.food-box p{
+opacity:.75;
+margin-bottom:15px;
+}
+
+.food-box span{
+font-size:28px;
+font-weight:700;
+color:#ff9900;
+}
+
+/* CONTACT */
+
+.contact{
+padding:120px 10%;
+}
+
+.contact-box{
+background:#111;
+padding:60px;
+border-radius:35px;
+border:1px solid rgba(255,153,0,.12);
+text-align:center;
+}
+
+.contact-box h2{
+font-size:55px;
+margin-bottom:30px;
+color:#ff9900;
+}
+
+.contact-box p{
+font-size:18px;
+opacity:.8;
+margin-bottom:16px;
+}
+
+.contact-buttons{
+display:flex;
+justify-content:center;
+gap:20px;
+flex-wrap:wrap;
+margin-top:35px;
+}
+
+/* FOOTER */
+
+footer{
+padding:50px;
+text-align:center;
+background:#0d0d0d;
+border-top:1px solid rgba(255,153,0,.1);
+}
+
+footer h3{
+font-size:32px;
+color:#ff9900;
+margin-bottom:10px;
+}
+
+footer p{
+opacity:.7;
+margin-top:10px;
+}
+
+/* MOBILE */
+
+@media(max-width:1000px){
+
+.nav-links{
+display:none;
+}
+
+.call-btn{
+display:none;
+}
+
+.hero{
+flex-direction:column;
+text-align:center;
+padding-top:170px;
+}
+
+.hero-left h1{
+font-size:58px;
+}
+
+.hero-buttons{
+justify-content:center;
+}
+
+.hero-right img{
+width:100%;
+height:350px;
+}
+
+.logo img{
+width:55px;
+height:55px;
+}
+
+.logo-text h2{
+font-size:22px;
+}
+
+.special h2,
+.menu h2,
+.contact-box h2{
+font-size:42px;
+}
+
+.food-items{
+grid-template-columns:1fr;
+}
+
+.contact-box{
+padding:35px;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="glow"></div>
+
+<nav>
+
+<div class="nav-container">
+
+<div class="logo">
+
+<img src="images.jpg">
+
+<div class="logo-text">
+<h2>Paapi Pet</h2>
+<span>Pure Veg Restaurant</span>
+</div>
+
+</div>
+
+<ul class="nav-links">
+<li><a href="#">Home</a></li>
+<li><a href="#special">Special</a></li>
+<li><a href="#menu">Menu</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+
+<div class="nav-right">
+
+<a href="tel:7302124110" class="call-btn">
+📞 Call
+</a>
+
+<button class="login-btn">
+Login
+</button>
+
+</div>
+
+</div>
+
+</nav>
+
+<section class="hero">
+
+<div class="hero-overlay"></div>
+
+<div class="hero-left">
+
+<h1>
+Fresh Veg<br>
+Fast Delivery.
+</h1>
+
+<p>
+Paapi पेट् Restaurant serves premium pure vegetarian fast food with modern taste and fast service in Sirsaganj.
+</p>
+
+<div class="hero-buttons">
+<a href="#menu" class="btn">Order Now</a>
+<a href="#contact" class="btn btn2">Visit Store</a>
+</div>
+
+<div class="search-box">
+<input type="text" placeholder="Search Pizza, Pasta, Patties...">
+<button>Search</button>
+</div>
+
+</div>
+
+<div class="hero-right">
+
+<img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?q=80&w=1600&auto=format&fit=crop">
+
+</div>
+
+</section>
+
+<section class="special" id="special">
+
+<h2>Today's Special</h2>
+
+<div class="special-grid">
+
+<div class="special-card">
+<img src="https://images.unsplash.com/photo-1596797038530-2c107229654b?q=80&w=1600&auto=format&fit=crop">
+
+<div class="special-content">
+<h3>Special Pasta</h3>
+<p>Pure veg creamy white sauce pasta.</p>
+</div>
+
+</div>
+
+<div class="special-card">
+
+<img src="https://images.unsplash.com/photo-1619895092538-128341789043?q=80&w=1600&auto=format&fit=crop">
+
+<div class="special-content">
+<h3>Aalu Patties</h3>
+<p>Hot crispy patties with spicy filling.</p>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section class="menu" id="menu">
+
+<h2>Restaurant Menu</h2>
+
+<div class="food-items">
+
+<div class="food-box">
+<img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=1200&auto=format&fit=crop">
+<h3>Veg Burger</h3>
+<p>Cheesy crispy veg burger</p>
+<span>₹49</span>
+</div>
+
+<div class="food-box">
+<img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=1200&auto=format&fit=crop">
+<h3>Veg Pizza</h3>
+<p>Loaded cheese pizza</p>
+<span>₹99</span>
+</div>
+
+<div class="food-box">
+<img src="https://images.unsplash.com/photo-1596797038530-2c107229654b?q=80&w=1200&auto=format&fit=crop">
+<h3>White Sauce Pasta</h3>
+<p>Creamy pure veg pasta</p>
+<span>₹40</span>
+</div>
+
+<div class="food-box">
+<img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?q=80&w=1200&auto=format&fit=crop">
+<h3>French Fries</h3>
+<p>Crispy salted fries</p>
+<span>₹59</span>
+</div>
+
+<div class="food-box">
+<img src="https://images.unsplash.com/photo-1619895092538-128341789043?q=80&w=1200&auto=format&fit=crop">
+<h3>Aalu Patties</h3>
+<p>Hot crispy patties</p>
+<span>₹30</span>
+</div>
+
+<div class="food-box">
+<img src="https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?q=80&w=1200&auto=format&fit=crop">
+<h3>Veg Sandwich</h3>
+<p>Loaded grilled sandwich</p>
+<span>₹45</span>
+</div>
+
+</div>
+
+</section>
+
+<section class="contact" id="contact">
+
+<div class="contact-box">
+
+<h2>Contact Us</h2>
+
+<p><strong>Restaurant:</strong> Paapi पेट् Restaurant</p>
+
+<p><strong>Address:</strong> In front of Dr. Kedarnath hospital, Sirsaganj, Uttar Pradesh 283151</p>
+
+<p><strong>Phone:</strong> +91 73021 24110</p>
+
+<p><strong>Hours:</strong> Open • Closes 11 PM</p>
+
+<p><strong>Rating:</strong> ⭐ 4.6 / 5 (131 Google Reviews)</p>
+
+<div class="contact-buttons">
+
+<a href="tel:7302124110" class="btn">
+Call Now
+</a>
+
+<a href="https://wa.me/917302124110" target="_blank" class="btn">
+WhatsApp
+</a>
+
+<a href="https://maps.google.com/?q=Paapi+Pet+Restaurant+Sirsaganj" target="_blank" class="btn">
+Directions
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+<footer>
+
+<h3>Paapi Pet Restaurant</h3>
+
+<p>
+"Paapi पेट् का सवाल है खाना तो पड़ेगा hi 😋🍴"
+</p>
+
+<p>
+Presented By Aniruddha Sharma
+</p>
+
+<p>
+Pure Vegetarian • Fast Food • Sirsaganj
+</p>
+
+<p>
+© 2026 Paapi Pet. All Rights Reserved.
+</p>
+
+</footer>
+
+<script>
+
+const glow = document.querySelector(".glow");
+
+document.addEventListener("mousemove",(e)=>{
+
+glow.animate({
+left:e.clientX + "px",
+top:e.clientY + "px"
+},{
+duration:80,
+fill:"forwards"
+});
+
+});
+
+const cards = document.querySelectorAll(".special-card");
+
+window.addEventListener("scroll",()=>{
+
+cards.forEach(card=>{
+
+const top = card.getBoundingClientRect().top;
+
+if(top < window.innerHeight - 100){
+card.classList.add("show");
+}
+
+});
+
+});
+
+</script>
+
+</body>
+</html>
