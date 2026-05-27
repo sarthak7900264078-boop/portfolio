@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lord Krishna Institute | Premium Student Portal</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&display=swap');
+        
+        :root {
+            --bg-dark: #020617;
+            --bg-panel: #0f172a;
+            --primary: #38bdf8;
+            --secondary: #818cf8;
+            --accent: #c084fc;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --glass: rgba(15, 23, 42, 0.75);
+            --border: rgba(255, 255, 255, 0.08);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        
+        html { scroll-behavior: smooth; }
+
+        body { 
+            background-color: var(--bg-dark); 
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(56, 189, 248, 0.12) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(192, 132, 252, 0.12) 0px, transparent 50%);
+            color: var(--text-main); 
+            overflow-x: hidden;
+            line-height: 1.5;
+        }
+
+        #courses, #mentor, #contact { scroll-margin-top: 80px; }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg-dark); }
+        ::-webkit-scrollbar-thumb { background: var(--bg-panel); border-radius: 4px; border: 1px solid var(--border); }
+        ::-webkit-scrollbar-thumb:hover { background: var(--secondary); }
+
+        .reveal { 
+            opacity: 0; 
+            transform: translateY(30px); 
+            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: transform, opacity;
+        }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        /* --- HEADER --- */
+        header { 
+            position: fixed; top: 0; width: 100%; padding: 15px 5%; 
+            display: flex; justify-content: space-between; align-items: center; 
+            background: var(--glass); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+            z-index: 9999; border-bottom: 1px solid var(--border);
+        }
+
+        .brand { font-size: 1.25rem; font-weight: 900; letter-spacing: -0.5px; color: var(--text-main); text-transform: uppercase; }
+        .brand span { color: var(--primary); }
+        .nav-links { display: flex; align-items: center; }
+        .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; margin-left: 30px; letter-spacing: 0.5px; transition: color 0.3s; }
+        .nav-links a:hover { color: var(--primary); }
+
+        .btn-portal { padding: 10px 20px; margin-left: 30px; background: linear-gradient(45deg, var(--primary), var(--secondary)); color: #fff; border-radius: 6px; font-weight: 800; font-size: 0.8rem; border: none; cursor: pointer; transition: 0.3s; box-shadow: 0 4px 15px rgba(56,189,248,0.2); }
+        .btn-portal:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(56,189,248,0.4); }
+
+        /* --- HERO --- */
+        .hero { 
+            min-height: 100vh; display: grid; grid-template-columns: 1.1fr 0.9fr; 
+            align-items: center; gap: 50px; padding: 100px 5% 40px 5%; 
+        }
+        
+        .hero-tag { display: inline-block; padding: 6px 12px; background: rgba(56, 189, 248, 0.08); border: 1px solid rgba(56, 189, 248, 0.2); border-radius: 50px; color: var(--primary); font-weight: 600; margin-bottom: 20px; font-size: 0.7rem; letter-spacing: 1px; }
+        .hero h1 { font-size: clamp(2.5rem, 6vw, 5.5rem); font-weight: 900; line-height: 1; letter-spacing: -1.5px; margin-bottom: 20px; }
+        
+        @keyframes spectrumTransition { 0% { color: var(--primary); } 50% { color: var(--secondary); } 100% { color: var(--accent); } }
+        .hero h1 span { animation: spectrumTransition 8s infinite alternate ease-in-out; }
+        .hero p { font-size: 1.1rem; color: var(--text-muted); max-width: 550px; margin-bottom: 30px; }
+
+        /* --- VISUALS FIX --- */
+        .hero-visuals { 
+            position: relative; 
+            height: 500px; 
+            width: 100%; 
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .float-img { 
+            position: absolute; 
+            border-radius: 20px; 
+            object-fit: cover; 
+            box-shadow: 0 25px 50px rgba(0,0,0,0.6); 
+        }
+        
+        @keyframes float1 { 0%, 100% { transform: translateY(0) rotate(-1deg); } 50% { transform: translateY(-10px) rotate(0deg); } }
+        @keyframes float2 { 0%, 100% { transform: translateY(0) rotate(1deg); } 50% { transform: translateY(-15px) rotate(0deg); } }
+        
+        /* Pinned bottom-left */
+        .img-1 { 
+            width: 70%; 
+            height: 75%; 
+            z-index: 1; 
+            left: 0; 
+            bottom: 0; 
+            animation: float1 6s ease-in-out infinite; 
+        }
+        /* Pinned top-right with overlap border */
+        .img-2 { 
+            width: 60%; 
+            height: 65%; 
+            z-index: 2; 
+            right: 0; 
+            top: 0; 
+            animation: float2 8s ease-in-out infinite; 
+            border: 6px solid var(--bg-dark); /* Creates depth where they overlap */
+        }
+
+        /* --- DASHBOARD COURSES --- */
+        .dashboard { padding: 100px 5%; }
+        .section-title { font-size: 2rem; font-weight: 800; letter-spacing: -1px; margin-bottom: 10px; }
+        .section-desc { color: var(--text-muted); font-size: 1rem; margin-bottom: 50px; }
+        
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; perspective: 1000px; }
+        
+        .card { background: var(--bg-panel); border-radius: 16px; overflow: hidden; border: 1px solid var(--border); transition: border-color 0.4s, transform 0.4s; }
+        .card:hover { border-color: var(--secondary); transform: translateY(-5px); }
+        
+        .card-media-container { width: 100%; aspect-ratio: 16/9; overflow: hidden; position: relative; background: #020617; }
+        .card-img { width: 100%; height: 100%; object-fit: cover; object-position: center; transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+        .card:hover .card-img { transform: scale(1.05); }
+        
+        .word-art-badge { position: absolute; top: 15px; left: 15px; padding: 4px 10px; background: rgba(2, 6, 23, 0.8); border: 1px solid rgba(255, 255, 255, 0.1); backdrop-filter: blur(8px); border-radius: 6px; font-size: 0.7rem; font-weight: 900; color: #fff; letter-spacing: 1px; z-index: 2; }
+        
+        .card-content { padding: 25px; }
+        .card-content h3 { font-size: 1.4rem; font-weight: 800; margin-bottom: 8px; letter-spacing: -0.5px; }
+        .card-content p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.5; margin-bottom: 20px; min-height: 40px; }
+        
+        .card-meta { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border); padding-top: 15px; }
+        .price { font-size: 1.2rem; font-weight: 900; color: var(--text-main); }
+        .btn-action { padding: 10px 20px; background: var(--text-main); color: var(--bg-dark); border: none; border-radius: 6px; font-weight: 800; font-size: 0.8rem; cursor: pointer; transition: background 0.3s, color 0.3s; }
+        .btn-action:hover { background: var(--primary); color: #000; }
+
+        /* --- MENTOR --- */
+        .mentor-module { padding: 100px 5%; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; background: rgba(15, 23, 42, 0.3); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+        
+        .mentor-media-wrapper { position: relative; width: 100%; max-width: 450px; aspect-ratio: 4/5; margin: 0 auto; }
+        .mentor-img-mask { width: 100%; height: 100%; border-radius: 20px; overflow: hidden; border: 1px solid var(--border); }
+        .mentor-img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
+        
+        .mentor-word-art {
+            position: absolute; 
+            bottom: -25px; 
+            right: -25px; 
+            background: linear-gradient(135deg, var(--primary), var(--secondary)); 
+            padding: 20px 30px; 
+            border-radius: 16px; 
+            box-shadow: 0 20px 40px rgba(56, 189, 248, 0.3); 
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.4);
+            z-index: 10;
+        }
+        .mentor-word-art h4 { font-size: 2.2rem; color: #000; font-weight: 900; line-height: 1; margin-bottom: 5px; letter-spacing: -1px; }
+        .mentor-word-art span { color: rgba(0,0,0,0.8); font-size: 0.8rem; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; }
+
+        .mentor-info h2 { font-size: 2.8rem; font-weight: 900; letter-spacing: -1.5px; line-height: 1.1; margin-bottom: 20px; }
+        .mentor-info p { font-size: 1.05rem; color: var(--text-muted); line-height: 1.7; }
+
+        /* --- FOOTER & CONTACT --- */
+        footer { padding: 80px 5%; background: #020617; display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 60px; align-items: center; }
+        .footer-cta h2 { font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 900; letter-spacing: -1.5px; margin-bottom: 10px; line-height: 1.1; }
+        .footer-cta p { color: var(--text-muted); font-size: 1.1rem; margin-bottom: 30px; }
+        
+        .contact-buttons { display: flex; gap: 15px; flex-wrap: wrap; }
+        .btn-call { display: inline-flex; align-items: center; gap: 10px; padding: 14px 28px; background: var(--primary); color: #000; text-decoration: none; font-weight: 800; font-size: 1rem; border-radius: 8px; transition: transform 0.3s, box-shadow 0.3s; }
+        .btn-call:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(56, 189, 248, 0.3); }
+
+        .btn-whatsapp { display: inline-flex; align-items: center; gap: 10px; padding: 14px 28px; background: #25D366; color: #fff; text-decoration: none; font-weight: 800; font-size: 1rem; border-radius: 8px; transition: transform 0.3s, box-shadow 0.3s; }
+        .btn-whatsapp:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(37, 211, 102, 0.3); }
+
+        .footer-directory { background: var(--bg-panel); padding: 30px; border-radius: 16px; border: 1px solid var(--border); }
+        .footer-directory h4 { font-size: 1.2rem; font-weight: 800; margin-bottom: 20px; color: var(--text-main); }
+        
+        .map-container { width: 100%; height: 200px; border-radius: 10px; overflow: hidden; margin-bottom: 20px; border: 1px solid var(--border); }
+        .map-container iframe { width: 100%; height: 100%; border: none; filter: invert(90%) hue-rotate(180deg) contrast(90%); opacity: 0.8; transition: 0.3s; }
+        .map-container iframe:hover { opacity: 1; }
+
+        .footer-directory p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; margin-bottom: 5px; }
+        
+        .btn-directions { display: block; width: 100%; text-align: center; margin-top: 20px; padding: 12px; background: rgba(56, 189, 248, 0.1); border: 1px solid var(--primary); color: var(--primary); text-decoration: none; border-radius: 8px; font-weight: 700; transition: 0.3s; }
+        .btn-directions:hover { background: var(--primary); color: #000; }
+
+        @media (max-width: 1024px) {
+            .hero { grid-template-columns: 1fr; text-align: center; padding-top: 120px; }
+            .hero-tag { align-self: center; margin: 0 auto 20px auto; display: block; width: max-content; }
+            .hero p { margin: 0 auto 30px auto; }
+            .hero-visuals { height: 400px; max-width: 500px; margin: 0 auto; }
+            .nav-links { display: none; }
+            .btn-portal { margin-left: 0; }
+            .mentor-module, footer { grid-template-columns: 1fr; gap: 40px; }
+            .mentor-media-wrapper { width: 90%; aspect-ratio: 1/1; margin-bottom: 30px; }
+            .mentor-word-art { right: 0; left: 50%; transform: translateX(-50%); bottom: -20px; width: 80%; }
+            .footer-cta { text-align: center; }
+            .contact-buttons { justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="brand">LORD KRISHNA <span>INSTITUTE</span></div>
+        <div style="display:flex; align-items:center;">
+            <nav class="nav-links">
+                <a href="#courses" class="scroll-link">Batches</a>
+                <a href="#mentor" class="scroll-link">Mentorship</a>
+                <a href="#contact" class="scroll-link">Contact</a>
+            </nav>
+            <button class="btn-portal" onclick="alert('Login System Disabled')">STUDENT LOGIN</button>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content reveal">
+            <div class="hero-tag">SIRSAGANJ ACADEMIC DIVISION</div>
+            <h1>EMPOWERING<br><span>THE FUTURE.</span></h1>
+            <p>Premium educational infrastructure designed for total academic excellence. From strong board foundations to advanced science and professional computer applications.</p>
+            <button class="btn-portal scroll-link" href="#courses" style="margin-left: 0; padding: 15px 30px; font-size: 1rem;">EXPLORE BATCHES</button>
+        </div>
+        <div class="hero-visuals reveal">
+            <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&q=80&w=1000" class="float-img img-1" alt="Students on Campus">
+            <img src="https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&q=80&w=800" class="float-img img-2" alt="Library Books">
+        </div>
+    </section>
+
+    <section class="dashboard" id="courses">
+        <div class="section-header reveal">
+            <h2 class="section-title">ACADEMIC BATCHES</h2>
+            <p class="section-desc">Select an academic track to review curriculum schedules and pricing structures.</p>
+        </div>
+        
+        <div class="grid">
+            <div class="card tilt-card reveal">
+                <div class="card-media-container">
+                    <span class="word-art-badge">CLASS 10TH</span>
+                    <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&q=80&w=800" class="card-img" alt="Students in Classroom">
+                </div>
+                <div class="card-content">
+                    <h3>Foundation</h3>
+                    <p>Core academic logic, structural mathematics, and introductory science frameworks for board exams.</p>
+                    <div class="card-meta">
+                        <div class="price">₹2,999</div>
+                        <button class="btn-action scroll-link" href="#contact">ENROLL</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card tilt-card reveal">
+                <div class="card-media-container">
+                    <span class="word-art-badge">CLASS 11TH</span>
+                    <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&q=80&w=800" class="card-img" alt="Science Equipment">
+                </div>
+                <div class="card-content">
+                    <h3>Science Stream</h3>
+                    <p>Advanced physics, chemistry mechanics, and comprehensive biological sciences.</p>
+                    <div class="card-meta">
+                        <div class="price">₹4,999</div>
+                        <button class="btn-action scroll-link" href="#contact">ENROLL</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card tilt-card reveal">
+                <div class="card-media-container">
+                    <span class="word-art-badge">CLASS 12TH</span>
+                    <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&q=80&w=800" class="card-img" alt="Student Studying">
+                </div>
+                <div class="card-content">
+                    <h3>Advanced Boards</h3>
+                    <p>Rigorous board-level preparation, mock testing series, and university entrance foundations.</p>
+                    <div class="card-meta">
+                        <div class="price">₹5,999</div>
+                        <button class="btn-action scroll-link" href="#contact">ENROLL</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card tilt-card reveal">
+                <div class="card-media-container">
+                    <span class="word-art-badge">B.SC DIV</span>
+                    <img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&q=80&w=800" class="card-img" alt="University Students">
+                </div>
+                <div class="card-content">
+                    <h3>Higher Education</h3>
+                    <p>Detailed collegiate-level lectures, laboratory methodologies, and degree-focused learning.</p>
+                    <div class="card-meta">
+                        <div class="price">₹6,999</div>
+                        <button class="btn-action scroll-link" href="#contact">ENROLL</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card tilt-card reveal">
+                <div class="card-media-container">
+                    <span class="word-art-badge">DCA BATCH</span>
+                    <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=80&w=800" class="card-img" alt="Computer Lab">
+                </div>
+                <div class="card-content">
+                    <h3>Basic Computer</h3>
+                    <p>Digital application optimization, office software mastery, and operating systems fundamentals.</p>
+                    <div class="card-meta">
+                        <div class="price">₹1,999</div>
+                        <button class="btn-action scroll-link" href="#contact">ENROLL</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card tilt-card reveal">
+                <div class="card-media-container">
+                    <span class="word-art-badge">PGD CORE</span>
+                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=800" class="card-img" alt="Professional Students">
+                </div>
+                <div class="card-content">
+                    <h3>Professional</h3>
+                    <p>Post-graduate level learning, enterprise skill development, and career-ready certifications.</p>
+                    <div class="card-meta">
+                        <div class="price">₹7,999</div>
+                        <button class="btn-action scroll-link" href="#contact">ENROLL</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="mentor-module" id="mentor">
+        <div class="mentor-media-wrapper reveal">
+            <div class="mentor-img-mask">
+                <img src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&fit=crop&q=80&w=1000" class="mentor-img" alt="Academic Teacher">
+            </div>
+            <div class="mentor-word-art">
+                <h4>10+ YRS</h4>
+                <span>Academic Experience</span>
+            </div>
+        </div>
+        <div class="mentor-info reveal">
+            <h2>DEDICATED<br>MENTORSHIP.</h2>
+            <p>Our faculty consists of experienced educators who understand that every student learns differently. We don't just teach the syllabus; we build a foundation of discipline, curiosity, and genuine academic confidence that lasts a lifetime.</p>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="footer-cta reveal">
+            <h2>START YOUR<br>JOURNEY.</h2>
+            <p>Reach out directly for admissions, batch scheduling, and career counseling.</p>
+            
+            <div class="contact-buttons">
+                <a href="tel:09837104650" class="btn-call">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.68.68 0 0 0 .178.643l2.457 2.457a.68.68 0 0 0 .644.178l2.189-.547a1.75 1.75 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.6 18.6 0 0 1-7.01-4.42 18.6 18.6 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877z"/>
+                    </svg>
+                    CALL 098371 04650
+                </a>
+                
+                <a href="https://wa.me/919837104650" class="btn-whatsapp">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" viewBox="0 0 16 16">
+                        <path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/>
+                    </svg>
+                    CHAT ON WHATSAPP
+                </a>
+            </div>
+        </div>
+        
+        <div class="footer-directory reveal">
+            <h4>OUR CAMPUS</h4>
+            <div class="map-container">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14197.66904725068!2d78.5866164!3d27.1009139!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x397437751b3d5b0b%3A0xc47b744a49ed5341!2sSirsaganj%2C%20Uttar%20Pradesh%20283151!5e0!3m2!1sen!2sin!4v1700000000000" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+            
+            <p>Sothra Choraya, Etawah Road</p>
+            <p>In Front of Raj Medical Store</p>
+            <p>Sirsaganj, Uttar Pradesh 283151</p>
+            
+            <a href="https://goo.gl/maps/QG2v7R7wPZ6Q5K4p8" target="_blank" class="btn-directions">GET DIRECTIONS</a>
+            
+            <p style="margin-top: 25px; font-size: 0.8rem; opacity: 0.4; text-align: center;">© 2026 Lord Krishna Institute.</p>
+        </div>
+    </footer>
+
+    <script>
+        const triggerReveal = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.05, rootMargin: "0px 0px -40px 0px" });
+        
+        document.querySelectorAll('.reveal').forEach(element => triggerReveal.observe(element));
+
+        const tiltCards = document.querySelectorAll('.tilt-card');
+        tiltCards.forEach(card => {
+            card.addEventListener('mousemove', e => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const rotateX = ((y - centerY) / centerY) * -10;
+                const rotateY = ((x - centerX) / centerX) * 10;
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+                card.style.transition = `transform 0.5s ease`;
+            });
+            card.addEventListener('mouseenter', () => {
+                card.style.transition = `none`;
+            });
+        });
+
+        document.querySelectorAll('.scroll-link').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (!targetId || targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    const headerOffset = 80;
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
